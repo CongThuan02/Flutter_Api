@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:toktok_clone/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:toktok_clone/controllers/auth_controller.dart';
 import 'package:toktok_clone/views/screens/auth/sigup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp().then(
+    (value) {
+      Get.put(AuthController());
+    },
+  );
   runApp(const MyApp());
 }
 
